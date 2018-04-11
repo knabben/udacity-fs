@@ -1,0 +1,12 @@
+---
+# Configure services
+
+- name: Configure PostgreSQL database
+  postgresql_db:
+    name: items
+    
+- name: Change 000-default.conf to run WSGI app
+  template:
+    src: "../files/000-default.conf"
+    dest: "/etc/apache2/sites-available/000-default.conf"
+  notify: "reload apache2"

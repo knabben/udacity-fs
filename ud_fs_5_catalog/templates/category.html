@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block body %}
+<div class="row">
+    <nav aria-label="You are here" role="navigation">
+        <ul class="breadcrumbs">
+            <li><a href="/">Index</a></li>
+            <li><a class="disabled">{{category_name}}</a></li>
+        </ul>
+    </nav>
+    <div class="large-2 small-2 columns">
+        <ul class="menu vertical">
+            {% for category in categories %}
+                <li>
+                    <a href="/catalog/detail/category/{{category.name}}">
+                        {{category.name}}
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+    <div class="large-10 small-10 columns">
+        <h4><b>{{category_name}}</b> - Items {{items_count}}</h4>
+        <ul class="menu vertical">
+        {% for item in items %}
+            <li>
+                <a href="/catalog/detail/item/{{item.name}}">
+                    {{item.name}}
+                </a>
+            </li>
+        {% endfor %}
+        </ul>
+    </div>
+
+{% endblock %}

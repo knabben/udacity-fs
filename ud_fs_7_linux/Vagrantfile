@@ -1,0 +1,22 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+VAGRANTFILE_API_VERSION = "2"
+
+Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+  config.vm.box = "ubuntu/xenial64"
+  config.vm.network "forwarded_port", guest: 80, host: 8000
+
+  config.vm.synced_folder "app/", "/var/www/flask"
+
+  config.vm.provision "shell", path: "install.sh"
+
+  config.vm.provision "ansible", type: "ansible" do |ansible|
+    ansible.playbook = "playbooks/dev/install.yml"
+  end
+
+  config.vm.provision "deploy", type: "ansible" do |ansible|
+    ansible.playbook = "playbooks/dev/deploy.yml"
+  end
+
+end

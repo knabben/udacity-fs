@@ -1,0 +1,30 @@
+---
+# Application funcionality
+
+- name: Ensure PostgreSQL server is installed
+  apt:
+      name: postgresql
+      state: latest
+
+- name: Copy pg_hba.conf enabling localhost access
+  template:
+    src: ../files/pg_hba.conf.j2
+    dest: /etc/postgresql/9.5/main/pg_hba.conf
+  notify: "restart postgresql"
+  
+- name: Ensure Apache 2 is installed
+  apt:
+    name: apache2
+    state: latest
+
+- name: Ensure libapache2-mod-wsgi is installed
+  apt:
+    name: libapache2-mod-wsgi
+    state: latest
+
+- name: Enable wsgi module
+  apache2_module:
+    state: present
+    name: wsgi
+  notify: "reload apache2"
+

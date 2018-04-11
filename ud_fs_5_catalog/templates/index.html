@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block body %}
+<div class="row">
+    <nav aria-label="You are here" role="navigation">
+        <ul class="breadcrumbs">
+            <li><a href="/">Index</a></li>
+            <li><a class="disabled" href="/">Latests 10 items</a></li>
+        </ul>
+    </nav>
+    <div class="large-2 small-2 columns">
+        {% if is_logged %}
+           <h5><a href="/catalog/add/category">Add category</a></h5>
+        {% endif %}
+        <ul class="menu vertical">
+            {% for category in categories %}
+            <li>
+                <a href="/catalog/detail/category/{{category.name}}">
+                    {{category.name}}
+                </a>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <div class="large-10 small-10 columns">
+        {% if is_logged %}
+           <h5><a href="/catalog/add/item">Add item</a></h5>
+        {% endif %}
+        <ul class="menu vertical">
+        {% for item in last_items %}
+            <li>
+                <a href="/catalog/detail/item/{{item.name}}">
+                    {{item.name}}
+                </a>
+            </li>
+        {% endfor %}
+        </ul>
+    </div>
+</div>
+{% endblock %}

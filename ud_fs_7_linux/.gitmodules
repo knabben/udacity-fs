@@ -1,0 +1,3 @@
+[submodule "app"]
+	path = app
+	url = https://github.com/knabben/ud_fs_5_catalog

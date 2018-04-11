@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block body %}
+<div class="row">
+    <nav aria-label="You are here" role="navigation">
+        <ul class="breadcrumbs">
+            <li><a href="/">Index</a></li>
+            <li><a class="disabled" href="/">DELETE {{item_name}}</a></li>
+        </ul>
+    </nav>
+    <form method="POST">
+        <div class="row">
+            Do you really want to remove the {{item_name}}?
+        </div>
+
+        <div class="row">
+            <a class="button" href="/">NO</a>
+            <button class="button" type="submit">YES</a>
+        </div>
+    </form>
+
+</div>
+{% endblock %}

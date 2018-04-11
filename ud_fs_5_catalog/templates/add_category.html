@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block body %}
+<div class="row">
+    <nav aria-label="You are here" role="navigation">
+        <ul class="breadcrumbs">
+            <li><a href="/">Index</a></li>
+            <li><a class="disabled">ADD CATEGORY</a></li>
+        </ul>
+    </nav>
+    <form method="POST">
+        <div class="row">
+            <div class="large-12 small-12 columns">
+                <label>
+                    Title
+                    <input type="text" name="name">
+                </label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="large-12 small-12 columns">
+                <input class="button" type="submit" value="Add Item">
+            </div>
+        </div>
+    </form>
+</div>
+{% endblock %}

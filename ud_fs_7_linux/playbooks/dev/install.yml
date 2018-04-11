@@ -1,0 +1,13 @@
+- hosts: all
+  become: true
+  vars:
+    SSH_PORT: 22
+
+  tasks:
+
+    - include: ../user.yml
+    - include: ../security.yml
+    - include: ../app.yml
+
+  handlers:
+    - include: ../handlers.yml

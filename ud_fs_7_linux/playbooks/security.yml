@@ -1,0 +1,36 @@
+---
+# Security
+
+- name: Set UFW port 123 NTP
+  ufw:
+    rule: allow
+    port: 123
+    proto: udp
+
+- name: Set UFW port {{SSH_PORT}}
+  ufw:
+    rule: allow
+    port: "{{SSH_PORT}}"
+    proto: tcp
+
+- name: Set UFW port 80 HTTP
+  ufw:
+    rule: allow
+    port: 80
+    proto: tcp
+
+- name: Block all UFW
+  ufw:
+    state: enabled
+    rule: deny 
+    proto: tcp
+
+- name: Disable password access on SSH and remote root
+  template:
+    src: files/sshd_config.j2
+    dest: /etc/ssh/sshd_config
+  notify: "restart sshd server"
+
+- name: Upgrade all system packages
+  apt:
+    upgrade: dist

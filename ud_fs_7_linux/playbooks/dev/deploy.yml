@@ -1,0 +1,13 @@
+- hosts: all
+  become: true
+  vars:
+    PROJECT_PATH: /var/www/flask
+    VIRTUALENV_PATH: /var/www/flask_venv
+
+  tasks:
+
+    - include: ../deploy.yml
+    - include: ../reqs.yml
+
+  handlers:
+    - include: ../handlers.yml

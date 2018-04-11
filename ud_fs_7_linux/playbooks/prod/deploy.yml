@@ -1,0 +1,20 @@
+- hosts: server_2200
+  become: true
+  vars:
+    PROJECT_PATH: /var/www/flask
+    VIRTUALENV_PATH: /var/www/flask_venv
+
+  tasks:
+    - include: ../deploy.yml
+
+    - name: Checkout project on path
+      git:
+        repo: "https://github.com/knabben/ud_fs_5_catalog.git"
+        dest: "{{ PROJECT_PATH }}"
+        update: yes
+      notify: "reload apache2"
+
+    - include: ../reqs.yml
+
+  handlers:
+    - include: ../handlers.yml

@@ -1,0 +1,15 @@
+---
+# VirtualEnv 
+
+- name: Create virtualenv for project hosting
+  command: virtualenv "{{ VIRTUALENV_PATH }}"
+
+- name: Install requirements on virtualenv
+  pip:
+    requirements: "{{ PROJECT_PATH }}/requirements.txt"
+    virtualenv: "{{ VIRTUALENV_PATH }}"
+
+- name: Reload Apache2 for new code
+  service:
+    name: apache2
+    state: reloaded

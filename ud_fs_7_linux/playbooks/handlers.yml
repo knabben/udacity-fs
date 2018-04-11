@@ -1,0 +1,11 @@
+---
+# Handlers
+
+- name: restart sshd server
+  service: name=sshd state=restarted
+
+- name: reload apache2
+  service: name=apache2 state=reloaded
+
+- name: restart postgresql
+  service: name=postgresql state=restarted

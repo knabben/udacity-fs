@@ -1,0 +1,40 @@
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyPlace</title>
+  </head>
+  <body>
+      <div class="expanded row">
+        <div class="right-menu large-3 small-3 columns">
+            <h4 class="text-center">Cool places in Floripa</h4>
+            <div class="row">
+                <div class="large-12 small-12 columns">
+                    <input type="text"
+                           placeholder="place name"
+                           data-bind="value: searchData" />
+
+                    <button class="button right-menu-button"
+                            data-bind="click: filter">
+                    FILTER
+                    </button>
+                </div>
+            </div>
+            <br/>
+            <ul class="vertical menu" data-bind="foreach: places">
+                <li class="menu-item" data-bind="text: title, click: $parent.openMarker"></li>
+            </ul>
+        </div>
+        <div class="large-9 small-9 columns">
+            <div id="map"></div>
+        </div>
+      </div>
+
+      <script src="/static/bundle.js"></script>
+      <script async defer
+         src="https://maps.googleapis.com/maps/api/js?v=3&key=AIzaSyC0VbV8cz5HCITmN_ct1ft0wft6ZFaa6Uk&callback=initMap">
+	    </script>
+
+  </body>
+</html>

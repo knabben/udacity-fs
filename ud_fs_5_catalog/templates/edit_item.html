@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block body %}
+<div class="row">
+    <nav aria-label="You are here" role="navigation">
+        <ul class="breadcrumbs">
+            <li><a href="/">Index</a></li>
+            <li><a class="disabled">EDIT {{item.name}}</a></li>
+        </ul>
+    </nav>
+
+    <form method="POST">
+        <div class="row">
+            <div class="large-12 small-12 columns">
+                <label>
+                    Title
+                    <input type="text" name="name" value="{{item.name}}">
+                </label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="large-12 small-12 columns">
+                <label>
+                    Description
+                </label>
+                <textarea name="description">{{item.description}}</textarea>
+            </div>
+        </div>
+        <div class="row">
+            <div class="large-12 small-12 columns">
+                <input class="button" type="submit" value="Update">
+            </div>
+        </div>
+    </form>
+</div>
+{% endblock %}

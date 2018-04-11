@@ -1,0 +1,22 @@
+---
+# User Management
+
+- name: Create grader user
+  user:
+    name: grader
+    comment: Grader
+    group: admin
+    shell: /bin/bash
+    generate_ssh_key: true
+
+- name: Copy id_rsa.pub to grader ~/.authorized_keys
+  copy:
+    src: ../files/id_rsa.pub
+    dest: /home/grader/.ssh/authorized_keys
+
+- name: Allow admin group to become sudo
+  lineinfile:
+    dest: /etc/sudoers
+    regexp: '^%admin'
+    line: '%admin ALL=(ALL) NOPASSWD: ALL'
+    state: present
